@@ -20,14 +20,14 @@ if (puzza.classList.contains("nebbia_ammazza_vampiri")) {
 
 
 /*document.querySelector("#farting").addEventListener("click", function () {
-  setTimeout(clickToFart(), 1500);
+  setTimeout(clickToFart(), 3500);
 });/*
 
 /*any*/
 let triggers = document.querySelectorAll("#farting, .switch, .scrollToTopBtn");
 for(let ciascuno of triggers){
   ciascuno.addEventListener("click", function () {
-  setTimeout(clickToFart(), 1500);
+  setTimeout(clickToFart(), 3500);
 });
 }
 /*any*/
@@ -38,7 +38,7 @@ function clickToFart() {
 }
 
 /**/
-// fartscroll.js v0.1
+// fartscroll
 ("use strict");
 
 let fartscroll = (function () {
