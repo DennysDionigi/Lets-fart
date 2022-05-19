@@ -27,7 +27,7 @@ if (puzza.classList.contains("nebbia_ammazza_vampiri")) {
 let triggers = document.querySelectorAll("#farting, .switch, .scrollToTopBtn");
 for(let ciascuno of triggers){
   ciascuno.addEventListener("click", function () {
-  setTimeout(clickToFart(), 5000);
+  setTimeout(clickToFart(), 1000);
 });
 }
 /*any*/
