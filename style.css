@@ -219,7 +219,7 @@ body.light .navbar-brand::after {
   height: 400px;
   cursor: pointer;
 }
-#fart {
+#fart{
   width: 80px;
   height: 50px;
   opacity: 0;
@@ -227,6 +227,8 @@ body.light .navbar-brand::after {
 #woman:hover {
   fill: yellowgreen;
 }
+
+.fart_2{display:none;appearance:none;}
 
 .nebbia_ammazza_vampiri {
   -webkit-animation: 0.5s ammazza_vampiri alternate;
