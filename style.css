@@ -228,7 +228,7 @@ body.light .navbar-brand::after {
   fill: yellowgreen;
 }
 
-.fart_2{display:none;appearance:none;}
+#fart_2{display:none;appearance:none;}
 
 .nebbia_ammazza_vampiri {
   -webkit-animation: 0.5s ammazza_vampiri alternate;
