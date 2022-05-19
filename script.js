@@ -17,12 +17,12 @@ puzza.classList.remove("nebbia_ammazza_vampiri");
 if (puzza.classList.contains("nebbia_ammazza_vampiri")) {
   puzza.classList.remove("nebbia_ammazza_vampiri");
 }
+
+
 /*document.querySelector("#farting").addEventListener("click", function () {
   setTimeout(clickToFart(), 1500);
 });/*
 
-
-/
 /*any*/
 triggers = document.querySelectorAll("#farting, .switch, .scrollToTopBtn").
 for(let ciascuno of triggers){
