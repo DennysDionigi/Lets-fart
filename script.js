@@ -1,8 +1,6 @@
 // Enabling strict mode for better error checking and safer code
 "use strict";
 
-// GSAP and ScrollTrigger registration (ensure GSAP and ScrollTrigger libraries are included in your HTML)
-gsap.registerPlugin(ScrollTrigger);
 
 // Theme switch functionality
 document.querySelector(".switch").addEventListener("click", function () {
@@ -147,7 +145,6 @@ let fartscroll = (function () {
   }
 })(); // IIFE is correctly invoked here
 
-// Initialize the fartscroll functionality when the DOM is fully loaded
-document.addEventListener("visibilitychange", () => {
-  fartscroll(); // This assumes fartscroll is a function that initializes your scroll functionality
-});
+document.addEventListener("readystatechange", (e) => {
+  "interactive" === e.target.readyState && fartscroll();
+})
