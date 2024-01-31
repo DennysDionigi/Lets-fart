@@ -21,7 +21,7 @@ if (puzza.classList.contains("nebbia_ammazza_vampiri")) {
   puzza.classList.remove("nebbia_ammazza_vampiri");
 }
 
-let triggers = document.querySelectorAll("#farting, .switch, .scrollToTopBtn");
+let triggers = document.querySelectorAll("#farting,#main, .switch, .scrollToTopBtn");
 for (let ciascuno of triggers) {
   ciascuno.addEventListener("click", function () {
     setTimeout(clickToFart, 100); // Fixed the immediate invocation issue
