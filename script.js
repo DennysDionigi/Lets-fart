@@ -26,7 +26,7 @@ for (let ciascuno of triggers) {
   ciascuno.addEventListener("click", function () {
     setTimeout(clickToFart, 100); // Fixed the immediate invocation issue
   });
-  ciascuno.addEventListener("pointerdown", function () {
+  ciascuno.addEventListener("scroll", function () {
     setTimeout(clickToFart, 10); // Fixed the immediate invocation issue
   });
   ciascuno.addEventListener("touchstart", function () {
