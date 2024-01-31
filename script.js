@@ -26,7 +26,13 @@ if (puzza.classList.contains("nebbia_ammazza_vampiri")) {
 let triggers = document.querySelectorAll("#farting, .switch, .scrollToTopBtn");
 for (let ciascuno of triggers) {
   ciascuno.addEventListener("click", function () {
-    setTimeout(clickToFart, 1000); // Fixed the immediate invocation issue
+    setTimeout(clickToFart, 100); // Fixed the immediate invocation issue
+  });
+  ciascuno.addEventListener("pointerdown", function () {
+    setTimeout(clickToFart, 10); // Fixed the immediate invocation issue
+  });
+  ciascuno.addEventListener("touchstart", function () {
+    setTimeout(clickToFart, 10); // Fixed the immediate invocation issue
   });
 }
 
