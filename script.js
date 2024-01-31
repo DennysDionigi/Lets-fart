@@ -142,6 +142,6 @@ let fartscroll = (function () {
 })(); // IIFE is correctly invoked here
 
 // Initialize the fartscroll functionality when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("visibilitychange", () => {
   fartscroll(); // This assumes fartscroll is a function that initializes your scroll functionality
 });
