@@ -74,79 +74,93 @@ let fartscroll = (function () {
     ]
   };
 
-  return function (trigger_distance) {
-    trigger_distance = trigger_distance || 400;
-    var lastOffset;
+ // Define the main function with an optional trigger distance parameter
+return function (trigger_distance) {
+  trigger_distance = trigger_distance || 400;
+  var lastOffset;
 
-    var scrollFart = function () {
-      var scrollOffset = Math.floor(window.scrollY / trigger_distance);
-      if (lastOffset !== scrollOffset) {
-        playAudio();
-        lastOffset = scrollOffset;
-      }
-    };
-
-    var timer;
-    function resizeFart() {
-      if (timer) {
-        clearTimeout(timer);
-      }
-      timer = setTimeout(function () {
-        playAudio();
-      }, 200);
+  // Function to handle scroll events
+  var scrollFart = function () {
+    var scrollOffset = Math.floor(window.scrollY / trigger_distance);
+    if (lastOffset !== scrollOffset) {
+      playAudio();
+      lastOffset = scrollOffset;
     }
-
-    window.addEventListener("scroll", scrollFart, false);
-    window.addEventListener("resize", resizeFart, false);
   };
 
-  function playAudio(position) {
-    var player = getPlayer(),
+  // Function to handle resize events with debouncing
+  var timer;
+  function resizeFart() {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      playAudio();
+    }, 200);
+  }
+
+  // Add event listeners for scroll and resize events
+  window.addEventListener("scroll", scrollFart, false);
+  window.addEventListener("resize", resizeFart, false);
+};
+
+// Function to play audio, starts muted
+function playAudio(position) {
+  var player = getPlayer(),
       audio = getAudioFor(player),
       rand = Math.floor(Math.random() * audio.sound.length);
 
-    player.src = audio.prefix + audio.sound[position || rand];
-    player.play();
-  }
+  player.src = audio.prefix + audio.sound[position || rand];
+  player.muted = true; // Ensure the audio starts muted
+  player.play().then(() => {
+    // Once the audio is playing, you can safely unmute it if needed
+    // player.muted = false;
+  }).catch(error => {
+    console.error("Error playing audio:", error);
+  });
+}
 
-  function getAudioFor(player) {
-    if (player.canPlayType("audio/mp3")) {
-      return mp3;
-    } else if (player.canPlayType("audio/ogg")) {
-      return ogg;
-    }
+// Function to determine the audio format supported by the browser
+function getAudioFor(player) {
+  if (player.canPlayType("audio/mp3")) {
+    return mp3; // Ensure mp3 is defined elsewhere in your code
+  } else if (player.canPlayType("audio/ogg")) {
+    return ogg; // Ensure ogg is defined elsewhere in your code
   }
+}
 
-  function getPlayer() {
-    var container = getContainer(),
+// Function to get or create the audio player
+function getPlayer() {
+  var container = getContainer(),
       player,
       players = container.getElementsByTagName("audio");
 
-    for (player in players) {
-      if (player.currentTime === 0 || player.ended) {
-        return player;
-      }
+  for (var i = 0; i < players.length; i++) {
+    player = players[i];
+    if (player.currentTime === 0 || player.ended) {
+      return player;
     }
-
-    player = document.createElement("audio");
-    container.appendChild(player);
-    return player;
   }
 
-  function getContainer() {
-    var container = document.getElementById("fartscroll");
+  player = document.createElement("audio");
+  container.appendChild(player);
+  return player;
+}
 
-    if (container === null) {
-      container = document.createElement("div");
-      container.id = "fartscroll";
-      document.getElementsByTagName("body")[0].appendChild(container);
-    }
+// Function to get or create the container for the audio player
+function getContainer() {
+  var container = document.getElementById("fartscroll");
 
-    return container;
+  if (container === null) {
+    container = document.createElement("div");
+    container.id = "fartscroll";
+    document.body.appendChild(container);
   }
-})();
-/**/
 
-document.addEventListener("readystatechange", (e) => {
-  "interactive" === e.target.readyState && fartscroll();
+  return container;
+}
+
+// Initialize the functionality when the document is ready
+document.addEventListener("DOMContentLoaded", () => {
+  fartscroll(); // Ensure fartscroll function is defined or initialized here
 });
